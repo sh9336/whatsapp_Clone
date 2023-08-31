@@ -5,6 +5,7 @@ class ChatModel
   bool isGroup;
   String time;
   String currentMessage;
+  int id;
   //String status;
   ChatModel({
      required this.name,
@@ -12,6 +13,7 @@ class ChatModel
      required this.isGroup,
      required this.time,
      required this.currentMessage,
+     required this.id,
      //required this.status,
   });
 }

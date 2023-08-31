@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:kevlar/Model/ChatModel.dart';
 import 'package:kevlar/Pages/CameraPage.dart';
 import 'package:kevlar/Pages/ChatPage.dart';
+import 'package:kevlar/Pages/StatusPage.dart';
 class Homescreen extends StatefulWidget {
-  const Homescreen({Key? key}) : super(key: key);
+  const Homescreen({Key? key,required this.chatmodals,required this.sourcechat}) : super(key: key);
+  final List<ChatModel> chatmodals;
+  final ChatModel sourcechat;
 
   @override
   State<Homescreen> createState() => _HomescreenState();
@@ -60,8 +64,11 @@ class _HomescreenState extends State<Homescreen> with SingleTickerProviderStateM
           controller: _controller,
           children: [
       CameraPage(),
-      ChatPage(),
-      Text("STATUS"),
+      ChatPage(
+        chatmodals: widget.chatmodals,
+        sourcechat: widget.sourcechat,
+      ),
+      StatusPage(),
       Text("CALLS"),
     ],
       ),

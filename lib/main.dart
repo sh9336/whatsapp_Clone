@@ -2,6 +2,7 @@ import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:kevlar/Screens/CameraScreen.dart';
 import 'package:kevlar/Screens/Home.dart';
+import 'package:kevlar/Screens/LoginScreen.dart';
 Future<void> main()  async{
   WidgetsFlutterBinding.ensureInitialized();
   //cameras = await availableCameras();
@@ -24,7 +25,7 @@ class MyApp extends StatelessWidget {
         colorScheme:
         ColorScheme.fromSwatch().copyWith(secondary: Color(0xFF128C7E)),
       ),
-      home: Homescreen(),
+      home: LoginScreen(),
     );
   }
 }

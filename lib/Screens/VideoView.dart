@@ -1,23 +1,40 @@
+import 'package:flutter/material.dart';
 import 'dart:io';
 
-import 'package:flutter/material.dart';
-class CameraView extends StatelessWidget {
-  const CameraView({Key? key,required this.path}) : super(key: key);
+import 'package:video_player/video_player.dart';
+class VideoView extends StatefulWidget {
+  const VideoView({Key? key,required this.path}) : super(key: key);
   final String path;
+
+  @override
+  State<VideoView> createState() => _VideoViewState();
+}
+
+class _VideoViewState extends State<VideoView> {
+  late VideoPlayerController _controller;
+  @override
+  void initState() {
+    super.initState();
+    _controller = VideoPlayerController.file(File(widget.path))
+      ..initialize().then((_) {
+        // Ensure the first frame is shown after the video is initialized, even before the play button has been pressed.
+        setState(() {});
+      });
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.black,
       appBar: AppBar(
-        title: Text("Picture"),
+        title: Text("Video Recording"),
         backgroundColor: Colors.black,
         actions: [
           IconButton(
             onPressed: () {},
-              icon: Icon(
-                Icons.crop_rotate,
-                size: 27,
-              ),
+            icon: Icon(
+              Icons.crop_rotate,
+              size: 27,
+            ),
           ),
           IconButton(
             onPressed: () {},
@@ -51,10 +68,12 @@ class CameraView extends StatelessWidget {
             Container(
               width: MediaQuery.of(context).size.width,
               height: MediaQuery.of(context).size.height-150,
-              child: Image.file(
-                File(path),
-                fit: BoxFit.cover,
-              ),
+              child:  _controller.value.isInitialized
+                  ? AspectRatio(
+                aspectRatio: _controller.value.aspectRatio,
+                child: VideoPlayer(_controller),
+              )
+                  : Container(),
             ),
             Positioned(
               bottom: 0,
@@ -82,6 +101,23 @@ class CameraView extends StatelessWidget {
                       backgroundColor: Colors.tealAccent[700],
                       child: Icon(Icons.check,color: Colors.white,size: 27,),
                     ),
+                  ),
+                ),
+              ),
+            ),
+            Align(
+              alignment: Alignment.center,
+              child: InkWell(
+                onTap: (){
+                  setState(() {
+                    _controller.value.isPlaying?_controller.pause():_controller.play();
+                  });
+                },
+                child: CircleAvatar(
+                  backgroundColor: Colors.black38,
+                  radius: 33,
+                  child: Icon(_controller.value.isPlaying?Icons.pause:Icons.play_arrow,color: Colors.white,
+                  size: 50,
                   ),
                 ),
               ),
