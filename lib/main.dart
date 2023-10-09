@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:kevlar/Screens/CameraScreen.dart';
 import 'package:kevlar/Screens/Home.dart';
 import 'package:kevlar/Screens/LoginScreen.dart';
+import 'package:snippet_coder_utils/hex_color.dart';
 Future<void> main()  async{
   WidgetsFlutterBinding.ensureInitialized();
   //cameras = await availableCameras();
@@ -21,12 +22,16 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       theme: ThemeData(
         fontFamily: "OpenSans",
-        primaryColor: Color(0xFF075E54),
+        primaryColor: //HexColor("#075E54FF"),
+        Color(0xFF075E54),
         colorScheme:
         ColorScheme.fromSwatch().copyWith(secondary: Color(0xFF128C7E)),
       ),
       home: LoginScreen(),
     );
   }
+
+
+
 }
 

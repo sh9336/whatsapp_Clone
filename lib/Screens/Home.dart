@@ -3,6 +3,7 @@ import 'package:kevlar/Model/ChatModel.dart';
 import 'package:kevlar/Pages/CameraPage.dart';
 import 'package:kevlar/Pages/ChatPage.dart';
 import 'package:kevlar/Pages/StatusPage.dart';
+import 'package:snippet_coder_utils/hex_color.dart';
 class Homescreen extends StatefulWidget {
   const Homescreen({Key? key,required this.chatmodals,required this.sourcechat}) : super(key: key);
   final List<ChatModel> chatmodals;
@@ -23,6 +24,7 @@ class _HomescreenState extends State<Homescreen> with SingleTickerProviderStateM
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Color.fromARGB(255, 9, 110, 103),
         title: Text("Whatsapp Clone"),
         actions: [
           IconButton(onPressed: () {}, icon: Icon(Icons.search)),
