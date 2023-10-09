@@ -138,12 +138,7 @@ class _IndividualPageState extends State<IndividualPage> {
                         fontWeight: FontWeight.bold,
                       ),
                     ),
-                    // Text(
-                    //   "a month ago",
-                    //   style: TextStyle(
-                    //     fontSize: 13,
-                    //   ),
-                    // ),
+
                   ],
                 ),
               ),
